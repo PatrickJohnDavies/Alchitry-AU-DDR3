@@ -131,21 +131,21 @@ module au_top#
   
     wire [(2*nCK_PER_CLK)-1:0]            app_ecc_multiple_err;
     wire [(2*nCK_PER_CLK)-1:0]            app_ecc_single_err;
-    reg [ADDR_WIDTH-1:0]                 app_addr;
-    reg [2:0]                            app_cmd;
-    reg                                  app_en;
+    reg [ADDR_WIDTH-1:0]                  app_addr;
+    reg [2:0]                             app_cmd;
+    reg                                   app_en;
     wire                                  app_rdy;
     wire [APP_DATA_WIDTH-1:0]             app_rd_data;
     wire                                  app_rd_data_end;
     wire                                  app_rd_data_valid;
-    reg [APP_DATA_WIDTH-1:0]             app_wdf_data;
+    reg [APP_DATA_WIDTH-1:0]              app_wdf_data;
     wire                                  app_wdf_end = 1;
     wire [APP_MASK_WIDTH-1:0]             app_wdf_mask = 0;
     wire                                  app_wdf_rdy;
     wire                                  app_sr_active;
     wire                                  app_ref_ack;
     wire                                  app_zq_ack;
-    reg                                  app_wdf_wren;
+    reg                                   app_wdf_wren;
     wire [(64+(2*APP_DATA_WIDTH))-1:0]    error_status;
     wire [(PAYLOAD_WIDTH/8)-1:0]          cumlative_dq_lane_error;
     wire                                  mem_pattern_init_done;
@@ -187,14 +187,13 @@ module au_top#
     wire                                  vio_dbg_po_f_stg23_sel;
     wire                                  vio_dbg_po_f_dec;
     wire [11:0]                           device_temp;
-    ifdef SKIP_CALIB
-        // skip calibration wires
+    `ifdef SKIP_CALIB
         wire                              calib_tap_req;
         reg                               calib_tap_load;
         reg [6:0]                         calib_tap_addr;
         reg [7:0]                         calib_tap_val;
         reg                               calib_tap_load_done;
-    endif
+    `endif
 
     wire ui_clk;
     wire ui_clk_sync_rst;
